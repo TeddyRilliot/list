@@ -63,20 +63,19 @@ func TestResetRndList(t *testing.T) {
 	l := []int{1, 2, 3, 4}
 	r1 := New(l)
 
-	// r2 is a copy of r1, with an additional Reset() call to compute
-	// a new random order
-	r2 := *r1
-	r2.Reset()
+	order1 := [4]interface{}{}
+	for i := 0; i < len(l); i++ {
+		order1[i] = r1.Next()
+	}
+
+	r1.Reset()
 
 	for i := 0; i < len(l); i++ {
-		v1 := r1.Next()
-		v2 := r2.Next()
-
-		// Values are not equals : lists are different, test succeeds.
-		if v1 != v2 {
+		if order1[i] != r1.Next() {
+			t.Errorf("OK")
 			return
 		}
 	}
 
-	t.Errorf("%v and %v are identical", r1, r2)
+	t.Errorf("%v and %v are identical", order1, r1)
 }
