@@ -3,6 +3,8 @@ package sequential
 import (
 	"fmt"
 	"reflect"
+
+	"github.com/TeddyRilliot/list"
 )
 
 type seqList struct {
@@ -11,7 +13,7 @@ type seqList struct {
 }
 
 // New creates a new sequential list with items.
-func New(l interface{}) *seqList {
+func New(l interface{}) list.Interface {
 	if reflect.TypeOf(l).Kind() != reflect.Slice {
 		panic(fmt.Errorf("Param must be a slice"))
 	}

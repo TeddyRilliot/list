@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"math/rand"
 	"reflect"
+
+	"github.com/TeddyRilliot/list"
 )
 
 type randList struct {
@@ -15,7 +17,7 @@ type randList struct {
 // New creates a new random list with items.
 // The randomization method is smart, a returned value will not be returned
 // again until all values available are returned at least once.
-func New(l interface{}) *randList {
+func New(l interface{}) list.Interface {
 	if reflect.TypeOf(l).Kind() != reflect.Slice {
 		panic(fmt.Errorf("Param must be a slice"))
 	}
