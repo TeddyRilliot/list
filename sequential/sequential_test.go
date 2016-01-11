@@ -8,7 +8,7 @@ func TestSeqList(t *testing.T) {
 
 	exp := []int{1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4}
 
-	for i := 0; i < 12; i++ {
+	for i := 0; i < len(exp); i++ {
 		v := s.Next()
 		t.Logf("Loop %d, got %v", i, v)
 
@@ -33,7 +33,7 @@ func TestEmptySeqList(t *testing.T) {
 	s := New(l)
 
 	exp := []interface{}{nil, nil, nil, nil, nil, nil}
-	for i := 0; i < 6; i++ {
+	for i := 0; i < len(exp); i++ {
 		v := s.Next()
 		t.Logf("Loop %d, got %v", i, v)
 
