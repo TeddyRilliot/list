@@ -6,13 +6,14 @@ func TestSeqList(t *testing.T) {
 	l := []int{1, 2, 3, 4}
 	s := New(l)
 
-	for i := 0; i < 2; i++ {
-		for _, exp := range l {
-			v := s.Next()
-			if v != exp {
-				t.Errorf("Loop %d, %d is not expected (want %d)", i, v, exp)
-				return
-			}
+	exp := []int{1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4}
+
+	for i := 0; i < 12; i++ {
+		v := s.Next()
+		t.Logf("Loop %d, got %v", i, v)
+
+		if v != exp[i] {
+			t.Errorf("Expecting %v, got %v", exp[i], v)
 		}
 	}
 }
@@ -31,11 +32,13 @@ func TestEmptySeqList(t *testing.T) {
 	l := []int{}
 	s := New(l)
 
-	for i := 0; i < 2; i++ {
+	exp := []interface{}{nil, nil, nil, nil, nil, nil}
+	for i := 0; i < 6; i++ {
 		v := s.Next()
-		if v != nil {
-			t.Errorf("Loop %d, %d is not expected (want nil)", i, v)
-			return
+		t.Logf("Loop %d, got %v", i, v)
+
+		if v != exp[i] {
+			t.Errorf("Expecting %v, got %v", exp[i], v)
 		}
 	}
 }
@@ -48,8 +51,10 @@ func TestResetSeqList(t *testing.T) {
 	s.Reset()
 	second := s.Next()
 
-	if first != second || first != l[0] {
-		t.Errorf("%d != %d (reset failed), or %d != %d (next failed)", first, second, first, l[0])
-		return
+	if second != l[0] {
+		t.Errorf("Reset failed: %v != %v", second, l[0])
+	}
+	if first != second {
+		t.Errorf("Next failed: %v != %v", first, second)
 	}
 }

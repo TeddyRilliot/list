@@ -1,24 +1,28 @@
 package random
 
-import "testing"
+import (
+	"math/rand"
+	"testing"
+)
+
+func init() {
+	rand.Seed(1)
+}
 
 func TestRandList(t *testing.T) {
 	l := []int{1, 2, 3, 4}
 	r := New(l)
 
-	for i := 0; i < 2; i++ {
-		for _, exp := range l {
-			v := r.Next()
+	exp := []int{1, 2, 3, 4, 4, 3, 1, 2, 2, 1, 3, 4}
 
-			// Value is not equal to the sequential one : the list is
-			// randomized, test succeeds.
-			if v != exp {
-				return
-			}
+	for i := 0; i < 12; i++ {
+		v := r.Next()
+		t.Logf("Loop %d, got %v", i, v)
+
+		if v != exp[i] {
+			t.Errorf("Expecting %v, got %v", exp[i], v)
 		}
 	}
-
-	t.Errorf("list %v is not randomized", l)
 }
 
 func TestNotSliceRndList(t *testing.T) {
@@ -35,13 +39,14 @@ func Test1ItemRandList(t *testing.T) {
 	l := []int{1}
 	r := New(l)
 
-	for i := 0; i < 2; i++ {
-		for _, exp := range l {
-			v := r.Next()
-			if v != exp {
-				t.Errorf("Loop %d, %v is not expected (want %d)", i, v, exp)
-				return
-			}
+	exp := []int{1, 1, 1, 1, 1, 1}
+
+	for i := 0; i < 6; i++ {
+		v := r.Next()
+		t.Logf("Loop %d, got %v", i, v)
+
+		if v != exp[i] {
+			t.Errorf("Expecting %v, got %v", exp[i], v)
 		}
 	}
 }
@@ -50,11 +55,14 @@ func TestEmptyRndList(t *testing.T) {
 	l := []int{}
 	r := New(l)
 
-	for i := 0; i < 2; i++ {
+	exp := []interface{}{nil, nil, nil, nil, nil, nil}
+
+	for i := 0; i < 6; i++ {
 		v := r.Next()
-		if v != nil {
-			t.Errorf("Loop %d, %v is not expected (want nil)", i, v)
-			return
+		t.Logf("Loop %d, got %v", i, v)
+
+		if v != exp[i] {
+			t.Errorf("Expecting %v, got %v", exp[i], v)
 		}
 	}
 }
@@ -72,7 +80,6 @@ func TestResetRndList(t *testing.T) {
 
 	for i := 0; i < len(l); i++ {
 		if order1[i] != r1.Next() {
-			t.Errorf("OK")
 			return
 		}
 	}
