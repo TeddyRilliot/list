@@ -10,7 +10,7 @@ func TestRandList(t *testing.T) {
 	r := New(l)
 
 	rand.Seed(1)
-	exp := []int{1, 2, 3, 4, 4, 3, 1, 2, 2, 1, 3, 4}
+	exp := []int{1, 2, 3, 4, 1, 2, 3, 4, 4, 3, 1, 2}
 
 	for i := 0; i < len(exp); i++ {
 		v := r.Next()
