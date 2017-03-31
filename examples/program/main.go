@@ -5,9 +5,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/TeddyRilliot/list/program"
-	"github.com/TeddyRilliot/list/random"
-	"github.com/TeddyRilliot/list/sequential"
+	"github.com/trilliot/list/program"
+	"github.com/trilliot/list/random"
+	"github.com/trilliot/list/sequential"
 )
 
 func init() {

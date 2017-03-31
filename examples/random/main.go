@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/TeddyRilliot/list/random"
+	"github.com/trilliot/list/random"
 )
 
 type item struct {

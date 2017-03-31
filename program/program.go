@@ -1,6 +1,6 @@
 package program
 
-import "github.com/TeddyRilliot/list"
+import "github.com/trilliot/list"
 
 type rule struct {
 	list.Interface

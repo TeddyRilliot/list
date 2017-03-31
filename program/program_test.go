@@ -4,8 +4,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/TeddyRilliot/list/random"
-	"github.com/TeddyRilliot/list/sequential"
+	"github.com/trilliot/list/random"
+	"github.com/trilliot/list/sequential"
 )
 
 func TestProgramRules2x(t *testing.T) {

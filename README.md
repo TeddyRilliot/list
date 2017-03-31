@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-go get github.com/TeddyRilliot/list
+go get github.com/trilliot/list
 ```
 
 

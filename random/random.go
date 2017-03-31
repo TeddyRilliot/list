@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"reflect"
 
-	"github.com/TeddyRilliot/list"
+	"github.com/trilliot/list"
 )
 
 type randList struct {

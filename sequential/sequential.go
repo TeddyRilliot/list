@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/TeddyRilliot/list"
+	"github.com/trilliot/list"
 )
 
 type seqList struct {
